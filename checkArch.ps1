@@ -1,7 +1,6 @@
 ﻿#Программа для проверки отправленной банковской отчетности по форме 440p
 #(c) Гребенёв О.Е. 06.11.2019
 
-[boolean]$debug = $true
 [string]$curDir = Split-Path -Path $myInvocation.MyCommand.Path -Parent
 [string]$libDir = "$curDir\lib"
 
@@ -39,6 +38,7 @@ if ($debug) {
 
 if (!(Test-Path -Path $curArchive)) {
     Write-Log -EntryType Error -Message "Путь $curArchive не найден!"
+    exit
 }
 
 $body = "Отчет по 440П за $curFormatDate`n"
