@@ -29,8 +29,8 @@ Write-Log -EntryType Information -Message "Начало работы скрип�
 [string]$errPath = "$440Err\$curDate"
 
 if ($debug) {
-    $curDate = '27112019'
-    $curFormatDate = '27.11.2019'
+    $curDate = '30122019'
+    $curFormatDate = '30.12.2019'
     $curArchive = "$440Arhive\$curDate"
     $ackPath = "$440Ack\$curDate"
     $errPath = "$440Err\$curDate"
@@ -54,10 +54,7 @@ if ($arjCount -gt 0) {
         $name = $file.Name
         $findFile = Get-ChildItem -Path $outPath | Where-Object { ! $_.PSIsContainer } | Where-Object { $_.Name -match "^IZVTUB_" + $file.BaseName + ".+\.xml$" }
         if (($findFile | Measure-Object).count -eq 1) {
-            [string]$xmlDocument = Get-Content $findFile.FullName
-
-            $index = $xmlDocument.IndexOf("</Файл>")
-            [xml]$xmlOutput = $xmlDocument.Substring(0, $index + 7)
+            [xml]$xmlOutput = Get-Content $findFile.FullName
 
             $xmlTag = $xmlOutput.Файл.ИЗВЦБКОНТР
 
