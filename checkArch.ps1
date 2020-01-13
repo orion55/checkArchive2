@@ -28,8 +28,8 @@ Write-Log -EntryType Information -Message "Начало работы скрип�
 [string]$errPath = "$440Err\$curDate"
 
 if ($debug) {
-    $curDate = '30122019'
-    $curFormatDate = '30.12.2019'
+    $curDate = '13012020'
+    $curFormatDate = '13.01.2020'
     $curArchive = "$440Arhive\$curDate"
     $ackPath = "$440Ack\$curDate"
     $errPath = "$440Err\$curDate"

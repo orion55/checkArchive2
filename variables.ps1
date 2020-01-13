@@ -2,7 +2,7 @@
 
 #временный каталог
 [string]$tmp = "$curDir\temp"
-[boolean]$debug = $false
+[boolean]$debug = $true
 
 #настройка почты
 #[string]$mailAddr = "tmn-f365@tmn.apkbank.apk"
