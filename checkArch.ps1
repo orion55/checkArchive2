@@ -12,6 +12,7 @@ Set-Location $curDir
 
 #проверяем существуют ли нужные пути и файлы
 testDir(@($440Arhive, $440Ack, $440Err, $outPath))
+testFiles(@($arj32))
 createDir(@($logDir))
 
 #ClearUI
@@ -84,14 +85,23 @@ if ($arjCount -gt 0) {
         }
 
     }
+
+    $xmlCount = 0
+    ForEach ($file in $arjFiles) {
+        $AllArgs = @('l', $($file.FullName))
+        $lastLog = &$arj32 $AllArgs
+        $lastLog = $lastLog | Select-Object -Last 1
+
+        $regex = "^\s+(\d+)\sfiles"
+        $match = [regex]::Match($lastLog, $regex)
+        if ($match.Success) {
+            $xmlCount += [int]$match.Captures.groups[1].value
+        }
+    }
 }
 else {
     Write-Log -EntryType Error -Message "Архивы исходящих сообщений в каталоге $curArchive не найдены!"
 }
-
-$xmlFiles = Get-ChildItem -Path $curArchive $outgoingFilesXml
-$xmlCount = ($xmlFiles | Measure-Object).count
-
 if ($xmlCount -gt 0) {
     $body += "Файлов было отправлено $xmlCount шт.`n"
 }

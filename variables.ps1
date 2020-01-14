@@ -28,3 +28,5 @@
 #имя лог-файла
 [string]$logDir = $curDir + "\log"
 [string]$logName = "$logDir\checkArchive.log"
+
+[string]$arj32 ="$curDir\util\arj32.exe"
